@@ -10,7 +10,8 @@ WORKDIR /home
 RUN git clone https://github.com/nxtrace/NTrace-core.git &&\
     cd NTrace-core && VERSION=$(git describe --tags `git rev-list --tags --max-count=1`) &&\
     git checkout $VERSION &&\
-    go build -o nxtrace -trimpath -ldflags="-X 'github.com/nxtrace/NTrace-core/config.Version=${VERSION:1}' \
+    go build -o nxtrace -trimpath -ldflags="-X 'github.com/nxtrace/NTrace-core/config.Version=${VERSION}' \
+                                            -X 'main.version=${VERSION:1}' \
                                             -X 'main.arch=${TARGETARCH}' \
                                             -w -s"
 
