@@ -1,4 +1,4 @@
-FROM golang:alpine3.20 AS binarybuilder
+FROM golang:alpine3.23 AS binarybuilder
 RUN apk --no-cache --no-progress add \
     gcc git musl-dev
 
@@ -15,7 +15,7 @@ RUN git clone https://github.com/nxtrace/NTrace-core.git &&\
                                             -X 'main.arch=${TARGETARCH}' \
                                             -w -s"
 
-FROM alpine:3.18
+FROM alpine:3.23
 
 RUN apk --no-cache --no-progress add \
     ca-certificates \
